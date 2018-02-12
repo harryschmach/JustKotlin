@@ -20,6 +20,13 @@
 
         />
 
+    <Button
+        android:layout_width="@dimen/plus_minus_dims"
+        android:layout_height="@dimen/plus_minus_dims"
+        android:text="@string/inc_qty"
+        android:onClick="increaseQuant"
+        />
+
     <TextView
         android:id="@+id/quantity_text_view"
         android:layout_width="wrap_content"
@@ -34,10 +41,43 @@
         android:textSize="16sp" />
 
     <Button
+        android:layout_width="@dimen/plus_minus_dims"
+        android:layout_height="@dimen/plus_minus_dims"
+        android:text="@string/dec_qty"
+        android:onClick="decreaseQuant"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Price"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+
+    <TextView
+        android:id="@+id/price_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="@dimen/spacing_btwn_views"
+
+        android:layout_marginTop="@dimen/spacing_btwn_views"
+        android:text="@string/null_qty_str"
+
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/order_str_for_button"
         android:onClick="submitOrder"
         />
 
-</>
+</LinearLayout>

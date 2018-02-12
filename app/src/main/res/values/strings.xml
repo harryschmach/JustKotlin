@@ -3,4 +3,7 @@
     <string name="qty_str">QuantityY</string>
     <string name="null_qty_str">0</string>
     <string name="order_str_for_button">Order</string>
+    <string name="Price">Price</string>
+    <string name="inc_qty">+</string>
+    <string name="dec_qty">-</string>
 </resources>
