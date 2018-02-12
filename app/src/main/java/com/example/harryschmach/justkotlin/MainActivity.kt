@@ -26,9 +26,11 @@ class MainActivity : AppCompatActivity() {
      * This method is called when the order button is clicked.
      */
     fun submitOrder(view: View) {
+        val cost = qtyCoffees*price
+        val priceMessage = "Total: $" + (cost).toString() + "\nThanks!"
 
-        display(qtyCoffees)
-        displayPrice(qtyCoffees * price)
+
+        displayMessage(priceMessage)
     }
 
     fun increaseQuant(view: View) {
@@ -64,5 +66,13 @@ class MainActivity : AppCompatActivity() {
     private fun displayPrice(number: Int) {
         val priceTextView = findViewById<View>(R.id.price_text_view) as TextView
         priceTextView.text = NumberFormat.getCurrencyInstance().format(number)
+    }
+
+    /**
+     * This method displays the given text on the screen.
+     */
+    private fun displayMessage(message: String) {
+        val priceTextView = findViewById<View>(R.id.price_text_view) as TextView
+        priceTextView.text = message
     }
 }

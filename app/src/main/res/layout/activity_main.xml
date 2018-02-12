@@ -20,32 +20,42 @@
 
         />
 
-    <Button
-        android:layout_width="@dimen/plus_minus_dims"
-        android:layout_height="@dimen/plus_minus_dims"
-        android:text="@string/inc_qty"
-        android:onClick="increaseQuant"
-        />
-
-    <TextView
-        android:id="@+id/quantity_text_view"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/spacing_btwn_views"
+        android:paddingBottom="@dimen/spacing_btwn_views"
+        >
 
-        android:layout_marginBottom="@dimen/spacing_btwn_views"
+        <Button
+            android:layout_width="@dimen/plus_minus_dims"
+            android:layout_height="@dimen/plus_minus_dims"
+            android:text="@string/inc_qty"
+            android:onClick="increaseQuant"
+            />
 
-        android:layout_marginTop="@dimen/spacing_btwn_views"
-        android:text="@string/null_qty_str"
+        <TextView
+            android:id="@+id/quantity_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+            android:text="@string/null_qty_str"
 
-    <Button
-        android:layout_width="@dimen/plus_minus_dims"
-        android:layout_height="@dimen/plus_minus_dims"
-        android:text="@string/dec_qty"
-        android:onClick="decreaseQuant"
-        />
+            android:paddingLeft="@dimen/spacing_btwn_views"
+            android:paddingRight="@dimen/spacing_btwn_views"
+
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <Button
+            android:layout_width="@dimen/plus_minus_dims"
+            android:layout_height="@dimen/plus_minus_dims"
+            android:text="@string/dec_qty"
+            android:onClick="decreaseQuant"
+            />
+    </LinearLayout>
+
+
 
     <TextView
         android:layout_width="wrap_content"
