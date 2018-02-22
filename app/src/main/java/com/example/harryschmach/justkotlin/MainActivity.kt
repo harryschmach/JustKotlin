@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
 import java.text.NumberFormat
-import java.util.logging.Logger.global
 
 /**
  * This app displays an order form to order coffee.
@@ -26,8 +25,8 @@ class MainActivity : AppCompatActivity() {
      * This method is called when the order button is clicked.
      */
     fun submitOrder(view: View) {
-        val cost = qtyCoffees*price
-        val priceMessage = "Total: $" + (cost).toString() + "\nThanks!"
+        val totalCost = calculatePrice(qtyCoffees, price)
+        val priceMessage = createOrderSummary(totalCost)
 
 
         displayMessage(priceMessage)
@@ -36,17 +35,17 @@ class MainActivity : AppCompatActivity() {
     fun increaseQuant(view: View) {
         qtyCoffees += 1
 
-        display(qtyCoffees)
+        displayQuantity(qtyCoffees)
 //        displayPrice(qtyCoffees * price)
     }
     fun decreaseQuant(view: View) {
         if (qtyCoffees > 0) {
             qtyCoffees -= 1
 
-            display(qtyCoffees)
+            displayQuantity(qtyCoffees)
 //            displayPrice(qtyCoffees * price)
         } else{
-            display(qtyCoffees)
+            displayQuantity(qtyCoffees)
 //            displayPrice(qtyCoffees)
         }
     }
@@ -54,9 +53,9 @@ class MainActivity : AppCompatActivity() {
     /**
      * This method displays the given quantity value on the screen.
      */
-    private fun display(number: Int) {
+    private fun displayQuantity(numberRename: Int) {
         val quantityTextView = findViewById<View>(R.id.quantity_text_view) as TextView
-        val textToDisplay = number.toString()
+        val textToDisplay = numberRename.toString()
         quantityTextView.text = textToDisplay
     }
 
@@ -74,5 +73,30 @@ class MainActivity : AppCompatActivity() {
     private fun displayMessage(message: String) {
         val priceTextView = findViewById<View>(R.id.price_text_view) as TextView
         priceTextView.text = message
+    }
+
+    /**
+     * Calculates the price of the order based on the current quantity.
+     *
+     * @return the price of the things given how many there are and how much they cost
+     * @param quantity is number of things being ordered
+     * @param unitcost is cost of the thing
+     */
+    private fun calculatePrice(quantity: Int, unitcost: Int): Int {
+        return quantity * unitcost
+    }
+
+    private fun createOrderSummary(orderCost: Int): String {
+        return "Name: " + "Kaptain Kunal\n" +
+                "Quantity: " + qtyCoffees.toString() + "\n" +
+                "Total: " + orderCost.toString() + "\n" +
+                "Thank you!"
+    }
+
+    private fun calculatePrice1param(quantity: Int): Int {
+        return quantity * 10
+
+    }private fun calculatePrice0param(): Int {
+        return 5*10
     }
 }
