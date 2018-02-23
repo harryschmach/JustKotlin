@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.*
-import java.text.NumberFormat
 
 /**
  * This app displays an order form to order coffee.
@@ -19,31 +18,42 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    var qtyCoffees = 0
+    var qtyCoffees = 1
     val price = 5
     val isWhippedCream = findViewById<View>(R.id.whipped_cream_check) as CheckBox
+    val isChocolate = findViewById<View>(R.id.chocolate_check) as CheckBox
+    val nameOfPerson = findViewById<View>(R.id.name_text_field) as EditText
 
 
     /**
      * This method is called when the order button is clicked.
      */
     fun submitOrder(view: View) {
-        val totalCost = calculatePrice(qtyCoffees, price)
         val whippedCream = isWhippedCream.isChecked
-        val priceMessage = createOrderSummary(totalCost, whippedCream)
+        val chocoTime = isChocolate.isChecked
+        val totalCost = calculatePrice(qtyCoffees, price, whippedCream, chocoTime)
+
+        val nameIntoOrder = nameOfPerson.text.toString()
+        val priceMessage = createOrderSummary(totalCost, whippedCream, chocoTime, nameIntoOrder)
 
 
         displayMessage(priceMessage)
     }
 
     fun increaseQuant(view: View) {
-        qtyCoffees += 1
+        if (qtyCoffees < 100) {
+            qtyCoffees += 1
 
-        displayQuantity(qtyCoffees)
-//        displayPrice(qtyCoffees * price)
+            displayQuantity(qtyCoffees)
+//            displayPrice(qtyCoffees * price)
+        } else{
+            displayQuantity(qtyCoffees)
+//            displayPrice(qtyCoffees)
+        }
     }
+
     fun decreaseQuant(view: View) {
-        if (qtyCoffees > 0) {
+        if (qtyCoffees > 1) {
             qtyCoffees -= 1
 
             displayQuantity(qtyCoffees)
@@ -84,16 +94,30 @@ class MainActivity : AppCompatActivity() {
      *
      * @return the price of the things given how many there are and how much they cost
      * @param quantity is number of things being ordered
-     * @param unitcost is cost of the thing
+     * @param coffeeunitcost is cost of the thing
      */
-    private fun calculatePrice(quantity: Int, unitcost: Int): Int {
-        return quantity * unitcost
+    private fun calculatePrice(quantity: Int, coffeeunitcost: Int, wc: Boolean, choco: Boolean): Int {
+        var chocoCost = 0
+        var wcCost = 0
+        if (wc){
+            wcCost = 1
+        }
+        if (choco){
+            chocoCost = 2
+        }
+
+
+        return quantity * (coffeeunitcost + wcCost + chocoCost)
     }
 
-    private fun createOrderSummary(orderCost: Int, whippedCream: Boolean): String {
+    private fun createOrderSummary(orderCost: Int,
+                                   whippedCream: Boolean,
+                                   chocoChecked:Boolean,
+                                   nameUsed: String): String {
 
-        return "Name: " + "Kaptain Kunal\n" +
+        return "Name: " + nameUsed + "\n" +
                 "Added Whipped Cream? " + whippedCream.toString() + "\n" +
+                "Added Chocolate? " + chocoChecked.toString() + "\n" +
                 "Quantity: " + qtyCoffees.toString() + "\n" +
                 "Total: $" + orderCost.toString() + "\n" +
                 "Thank you!"
