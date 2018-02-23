@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">Just Kotlin</string>
-    <string name="qty_str">QuantityY</string>
+    <string name="qty_str">Quantity</string>
     <string name="null_qty_str">0</string>
     <string name="order_str_for_button">Order</string>
     <string name="Price">Price</string>
     <string name="inc_qty">+</string>
     <string name="dec_qty">-</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="topping">Toppings</string>
+    <string name="whipped_cream">Whipped Cream</string>
 </resources>

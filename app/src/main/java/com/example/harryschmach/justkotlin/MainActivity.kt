@@ -3,7 +3,9 @@ package com.example.harryschmach.justkotlin
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.CheckBox
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main.*
 import java.text.NumberFormat
 
 /**
@@ -15,18 +17,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
     }
 
     var qtyCoffees = 0
     val price = 5
+    val isWhippedCream = findViewById<View>(R.id.whipped_cream_check) as CheckBox
+
 
     /**
      * This method is called when the order button is clicked.
      */
     fun submitOrder(view: View) {
         val totalCost = calculatePrice(qtyCoffees, price)
-        val priceMessage = createOrderSummary(totalCost)
+        val whippedCream = isWhippedCream.isChecked
+        val priceMessage = createOrderSummary(totalCost, whippedCream)
 
 
         displayMessage(priceMessage)
@@ -62,17 +66,17 @@ class MainActivity : AppCompatActivity() {
     /**
      * This method displays the given price on the screen.
      */
-    private fun displayPrice(number: Int) {
-        val priceTextView = findViewById<View>(R.id.price_text_view) as TextView
-        priceTextView.text = NumberFormat.getCurrencyInstance().format(number)
-    }
+//    private fun displayPrice(number: Int) {
+//        val priceTextView = findViewById<View>(R.id.price_text_view) as TextView
+//        priceTextView.text = NumberFormat.getCurrencyInstance().format(number)
+//    }
 
     /**
      * This method displays the given text on the screen.
      */
     private fun displayMessage(message: String) {
-        val priceTextView = findViewById<View>(R.id.price_text_view) as TextView
-        priceTextView.text = message
+        val orderSummaryTextView = findViewById<View>(R.id.order_summary_text_view) as TextView
+        orderSummaryTextView.text = message
     }
 
     /**
@@ -86,10 +90,12 @@ class MainActivity : AppCompatActivity() {
         return quantity * unitcost
     }
 
-    private fun createOrderSummary(orderCost: Int): String {
+    private fun createOrderSummary(orderCost: Int, whippedCream: Boolean): String {
+
         return "Name: " + "Kaptain Kunal\n" +
+                "Added Whipped Cream? " + whippedCream.toString() + "\n" +
                 "Quantity: " + qtyCoffees.toString() + "\n" +
-                "Total: " + orderCost.toString() + "\n" +
+                "Total: $" + orderCost.toString() + "\n" +
                 "Thank you!"
     }
 
