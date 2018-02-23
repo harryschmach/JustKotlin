@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         val nameIntoOrder = nameOfPerson.text.toString()
         val priceMessage = createOrderSummary(totalCost, whippedCream, chocoTime, nameIntoOrder)
         val subject = "My coffee shop had $nameIntoOrder order this"
+
         val intent = Intent(Intent.ACTION_SENDTO)
         intent.data = Uri.parse("mailto:") // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, "harrisons@sandiego.edu")
