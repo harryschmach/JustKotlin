@@ -23,15 +23,15 @@ class MainActivity : AppCompatActivity() {
 
     var qtyCoffees = 1
     val price = 5
-    val isWhippedCream = findViewById<View>(R.id.whipped_cream_check) as CheckBox
-    val isChocolate = findViewById<View>(R.id.chocolate_check) as CheckBox
-    val nameOfPerson = findViewById<View>(R.id.name_text_field) as EditText
-
 
     /**
      * This method is called when the order button is clicked.
      */
     fun submitOrder(view: View) {
+        val isWhippedCream = findViewById<View>(R.id.whipped_cream_check) as CheckBox
+        val isChocolate = findViewById<View>(R.id.chocolate_check) as CheckBox
+        val nameOfPerson = findViewById<View>(R.id.name_text_field) as EditText
+
         val whippedCream = isWhippedCream.isChecked
         val chocoTime = isChocolate.isChecked
         val totalCost = calculatePrice(qtyCoffees, price, whippedCream, chocoTime)
