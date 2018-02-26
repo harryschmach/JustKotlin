@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Solo Kotlin</string>
+    <string name="qty_str">Cantidad</string>
+    <string name="order_str_for_button">Orden</string>
+    <string name="Price">Precio</string>
+    <string name="whipped_cream">Crema Batida</string>
+    <string name="name_pls">Nombre Por Favor</string>
+</resources>
